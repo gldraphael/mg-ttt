@@ -32,7 +32,7 @@ namespace TicTacToe
 
 			if(gameOver)
 			{
-				Game.Exit();
+				Winner = GameState.Turn;
 			}
 		}
 
@@ -42,9 +42,9 @@ namespace TicTacToe
 			base.UnloadContent();
 		}
 
-		public void IsGameOver()
+		public bool IsGameOver()
 		{
-			
+			return Winner != TileValue.EMPTY;
 		}
 
 		private void initTiles()
