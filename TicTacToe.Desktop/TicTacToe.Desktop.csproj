@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\TicTacToe\TicTacToe.projitems" Label="Shared" Condition="Exists('..\TicTacToe\TicTacToe.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>21b83cc7-2e9d-4236-96af-047a2d097b31</ProjectGuid>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <OutputType>WinExe</OutputType>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <RootNamespace>TicTacToe</RootNamespace>
+    <AssemblyName>TicTacToe</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>False</DebugSymbols>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.6.0.1625\lib\net40\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\libopenal.1.dylib" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\libopenal.1.dylib')">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\libSDL2-2.0.0.dylib" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\libSDL2-2.0.0.dylib')">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\MonoGame.Framework.dll.config" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\MonoGame.Framework.dll.config')">
+      <Link>MonoGame.Framework.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x64\libopenal.so.1" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x64\libopenal.so.1')">
+      <Link>x64\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x64\libSDL2-2.0.so.0" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x64\libSDL2-2.0.so.0')">
+      <Link>x64\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x64\SDL2.dll" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x64\SDL2.dll')">
+      <Link>x64\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x64\soft_oal.dll" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x64\soft_oal.dll')">
+      <Link>x64\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x86\libopenal.so.1" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x86\libopenal.so.1')">
+      <Link>x86\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x86\libSDL2-2.0.so.0" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x86\libSDL2-2.0.so.0')">
+      <Link>x86\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x86\SDL2.dll" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x86\SDL2.dll')">
+      <Link>x86\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x86\soft_oal.dll" Condition="Exists ('$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\$(MonoGamePlatform)\x86\soft_oal.dll')">
+      <Link>x86\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets')" />
+</Project>
