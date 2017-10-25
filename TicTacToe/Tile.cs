@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace TicTacToe
 {
@@ -12,6 +13,7 @@ namespace TicTacToe
 		public readonly Color BorderColor = Color.Black;
 
 		public Vector2 Position { get; set; }
+		public Rectangle Bounds { get { return new Rectangle((int)Position.X, (int)Position.Y, Width, Width); } }
 		public TileValue Value { get; set; } = TileValue.EMPTY;
 
 		private SpriteBatch _sb;
@@ -19,13 +21,15 @@ namespace TicTacToe
 				return _sb = _sb ?? Game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch; 
 			} 
 		}
-		private static Texture2D background;
+		private static Texture2D background, yellowBackground;
+		private Texture2D toDraw;
 
 		public Tile(Game game) : base(game)
 		{
 			if (background == null)
 			{
 				var colorData = new Color[Width * Width];
+				var data2 = new Color[Width * Width];
 				for (int i = 0; i < Width * Width; i++)
 				{
 					var iModWidth = i % Width;
@@ -33,16 +37,22 @@ namespace TicTacToe
 					   || i < Width * BorderWidth) // Horizontal lines (needs to be twice thicker)
 					{
 						colorData[i] = BorderColor;
+						data2[i] = BorderColor;
 					}
 					else 
 					{
 						colorData[i] = BackgroundColor;
+						data2[i] = Color.GreenYellow;
 					}
-
 				}
 				background = new Texture2D(GraphicsDevice, Width, Width);
 				background.SetData(colorData);
+
+				yellowBackground = new Texture2D(GraphicsDevice, Width, Width);
+				yellowBackground.SetData(data2);
 			}
+
+			toDraw = background;
 		}
 
 		protected override void LoadContent()
@@ -50,10 +60,28 @@ namespace TicTacToe
 			base.LoadContent();
 		}
 
+		public override void Update(GameTime gameTime)
+		{
+			// Mouse button clicked
+			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+			{
+				// Check if it's the current tile
+				if (Bounds.Contains(Mouse.GetState().Position))
+				{
+					// Update the state
+					Value = GameState.Turn;
+					toDraw = yellowBackground;
+				}
+			}
+
+			base.Update(gameTime);
+		}
+
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
-			spriteBatch.Draw(background, Position, Color.White);
+			spriteBatch.Draw(toDraw, Position, Color.White);
+			// spriteBatch.DrawString();
 			spriteBatch.End();
 			base.Draw(gameTime);
 		}
