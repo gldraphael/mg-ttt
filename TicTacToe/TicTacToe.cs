@@ -16,6 +16,7 @@ namespace TicTacToe
 	{
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
+		private MouseState previousState;
 
 		private List<List<Tile>> tiles;
 
@@ -65,10 +66,11 @@ namespace TicTacToe
 
 		protected override void Update(GameTime gameTime)
 		{
-			if(Mouse.GetState().LeftButton == ButtonState.Pressed)
+			if(previousState.LeftButton == ButtonState.Pressed && Mouse.GetState().LeftButton == ButtonState.Released)
 			{
 				GameState.ToggleTurn();
 			}
+			previousState = Mouse.GetState();
 
 			base.Update(gameTime);
 		}
