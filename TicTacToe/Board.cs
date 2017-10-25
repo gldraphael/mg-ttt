@@ -27,8 +27,20 @@ namespace TicTacToe
 			base.Update(gameTime);
 
 
-			var gameOver = isSame(tiles[0][0], tiles[1][1], tiles[2][2]) // Diagonals
+			// Check the diagonals
+			var gameOver = isSame(tiles[0][0], tiles[1][1], tiles[2][2])
 				|| isSame(tiles[0][2], tiles[1][1], tiles[2][0]);
+
+			// Check the columns
+			for (int i = 0; i < 3; i++)
+			{
+				gameOver = gameOver || isSame(tiles[i].ToArray()); // Columns
+			}
+			// Check the rows
+			for (int i = 0; i < 3; i++)
+			{
+				gameOver = gameOver || isSame(tiles.Select(x => x[i]).ToArray()); // Rows
+			}
 
 			if(gameOver)
 			{
