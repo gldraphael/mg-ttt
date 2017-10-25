@@ -12,14 +12,14 @@ namespace TicTacToe
 	/// <summary>
 	/// This is the main type for your game.
 	/// </summary>
-	public class Game1 : Game
+	public class TicTacToe : Game
 	{
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
 
 		private List<List<Tile>> tiles;
 
-		public Game1()
+		public TicTacToe()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			graphics.PreferredBackBufferHeight = Tile.Width * 3;

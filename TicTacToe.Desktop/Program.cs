@@ -10,7 +10,7 @@ namespace TicTacToe
 	{
 		static void Main (string [] args)
 		{
-			using (var game = new Game1 ()) {
+			using (var game = new TicTacToe ()) {
 				game.Run ();
 			}
 		}
