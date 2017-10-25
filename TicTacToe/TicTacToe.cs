@@ -59,7 +59,7 @@ namespace TicTacToe
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 			Services.AddService(typeof(SpriteBatch), spriteBatch);
-			var Font1 = Content.Load<SpriteFont>("fonts/ttt");
+			GlobalAssets.Font = Content.Load<SpriteFont>("fonts/ttt");
 			// base.LoadContent();
 		}
 

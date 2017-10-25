@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Tile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalAssets.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" Condition=" '$(OS)' != 'Unix' " />

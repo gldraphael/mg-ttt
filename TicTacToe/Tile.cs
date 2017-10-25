@@ -80,8 +80,14 @@ namespace TicTacToe
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
+
+			// Draw the tile
 			spriteBatch.Draw(toDraw, Position, Color.White);
-			// spriteBatch.DrawString();
+
+			var text = Value == TileValue.X ? "X" : Value == TileValue.ZERO ? "0" : "";
+
+			// Draw the string
+			spriteBatch.DrawString(GlobalAssets.Font, text, Position, Color.Black);
 			spriteBatch.End();
 			base.Draw(gameTime);
 		}
