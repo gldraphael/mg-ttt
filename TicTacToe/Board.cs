@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace TicTacToe
@@ -7,6 +8,7 @@ namespace TicTacToe
 	public class Board : DrawableGameComponent
 	{
 		private List<List<Tile>> tiles;
+		public TileValue Winner { get; set; } = TileValue.EMPTY;
 
 		public Board(Game game) : base(game)
 		{
@@ -23,12 +25,26 @@ namespace TicTacToe
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
+
+
+			var gameOver = isSame(tiles[0][0], tiles[1][1], tiles[2][2]) // Diagonals
+				|| isSame(tiles[0][2], tiles[1][1], tiles[2][0]);
+
+			if(gameOver)
+			{
+				Game.Exit();
+			}
 		}
 
 		protected override void UnloadContent()
 		{
 			tiles.ForEach(l => l.ForEach(t => Game.Components.Remove(t)));
 			base.UnloadContent();
+		}
+
+		public void IsGameOver()
+		{
+			
 		}
 
 		private void initTiles()
@@ -45,6 +61,28 @@ namespace TicTacToe
 					});
 				}
 			}
+		}
+
+		private static bool isSame(params TileValue[] values)
+		{
+			if (values == null)
+				return false;
+
+			if (values.Length == 0)
+				return true;
+			
+			var first = values[0] == TileValue.EMPTY ? TileValue.X : values[0]; // Condition because we don't want it to quit for all EMPTY values
+			for (int i = 1; i < values.Length; i++)
+			{
+				if (values[i] != first)
+					return false;
+			}
+			return true;
+		}
+
+		private static bool isSame(params Tile[] values)
+		{
+			return isSame(values.Select(x => x.Value).ToArray());
 		}
 	}
 }
