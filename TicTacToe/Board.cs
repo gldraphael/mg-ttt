@@ -17,19 +17,18 @@ namespace TicTacToe
 		{
 			base.Initialize();
 			initTiles();
-			tiles.ForEach(l => l.ForEach(t => t.Initialize()));
+			tiles.ForEach(l => l.ForEach(t => Game.Components.Add(t)));
 		}
 
 		public override void Update(GameTime gameTime)
 		{
-			tiles.ForEach(l => l.ForEach(t => t.Update(gameTime)));
 			base.Update(gameTime);
 		}
 
-		public override void Draw(GameTime gameTime)
+		protected override void UnloadContent()
 		{
-			tiles.ForEach(l => l.ForEach(t => t.Draw(gameTime)));
-			base.Draw(gameTime);
+			tiles.ForEach(l => l.ForEach(t => Game.Components.Remove(t)));
+			base.UnloadContent();
 		}
 
 		private void initTiles()
