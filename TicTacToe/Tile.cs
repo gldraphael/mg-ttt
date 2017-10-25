@@ -9,7 +9,8 @@ namespace TicTacToe
 	{
 		public const int Width = 200;
 		public const int BorderWidth = 2;
-		public readonly Color BackgroundColor = Color.CornflowerBlue;
+		public readonly Color EmptyBackground = Color.CornflowerBlue;
+		public readonly Color SelectedBackground = Color.GreenYellow;
 		public readonly Color BorderColor = Color.Black;
 
 		public Vector2 Position { get; set; }
@@ -21,12 +22,12 @@ namespace TicTacToe
 				return _sb = _sb ?? Game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch; 
 			} 
 		}
-		private static Texture2D background, yellowBackground;
+		private static Texture2D emptyBackground, selectedBackground;
 		private Texture2D toDraw;
 
 		public Tile(Game game) : base(game)
 		{
-			if (background == null)
+			if (emptyBackground == null)
 			{
 				var colorData = new Color[Width * Width];
 				var data2 = new Color[Width * Width];
@@ -41,18 +42,18 @@ namespace TicTacToe
 					}
 					else 
 					{
-						colorData[i] = BackgroundColor;
-						data2[i] = Color.GreenYellow;
+						colorData[i] = EmptyBackground;
+						data2[i] = SelectedBackground;
 					}
 				}
-				background = new Texture2D(GraphicsDevice, Width, Width);
-				background.SetData(colorData);
+				emptyBackground = new Texture2D(GraphicsDevice, Width, Width);
+				emptyBackground.SetData(colorData);
 
-				yellowBackground = new Texture2D(GraphicsDevice, Width, Width);
-				yellowBackground.SetData(data2);
+				selectedBackground = new Texture2D(GraphicsDevice, Width, Width);
+				selectedBackground.SetData(data2);
 			}
 
-			toDraw = background;
+			toDraw = emptyBackground;
 		}
 
 		protected override void LoadContent()
@@ -70,7 +71,7 @@ namespace TicTacToe
 				{
 					// Update the state
 					Value = GameState.Turn;
-					toDraw = yellowBackground;
+					toDraw = selectedBackground;
 				}
 			}
 

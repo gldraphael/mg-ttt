@@ -18,7 +18,7 @@ namespace TicTacToe
 		private SpriteBatch spriteBatch;
 		private MouseState previousState;
 
-		private List<List<Tile>> tiles;
+		private Board board;
 
 		public TicTacToe()
 		{
@@ -29,28 +29,12 @@ namespace TicTacToe
 
 		protected override void Initialize()
 		{
-			tiles = new List<List<Tile>>();
-			for (int i = 0; i < 3; i++)
-			{
-				tiles.Add(new List<Tile>());
-				for (int j = 0; j < 3; j++)
-				{
-					tiles[i].Add(new Tile(this)
-					{
-						Position = new Vector2(i * Tile.Width, j * Tile.Width)
-					});
-				}
-			}
-
-			foreach (var i in tiles)
-			{
-				foreach (var j in i)
-				{
-					Components.Add(j);
-				}
-			}
-
 			base.Initialize();
+
+			board = new Board(this);
+			board.Initialize();
+			Components.Add(board);
+
 			Window.Title = "Tic Tac Toe";
 			IsMouseVisible = true;
 		}
