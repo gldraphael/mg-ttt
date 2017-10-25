@@ -84,10 +84,12 @@ namespace TicTacToe
 			// Draw the tile
 			spriteBatch.Draw(toDraw, Position, Color.White);
 
+			// Decide on the text and position
 			var text = Value == TileValue.X ? "X" : Value == TileValue.ZERO ? "0" : "";
+			var textPosition = Position + (new Vector2(Width) - GlobalAssets.Font.MeasureString(text)) / 2;
 
 			// Draw the string
-			spriteBatch.DrawString(GlobalAssets.Font, text, Position, Color.Black);
+			spriteBatch.DrawString(GlobalAssets.Font, text, textPosition, Color.Black);
 			spriteBatch.End();
 			base.Draw(gameTime);
 		}
