@@ -66,7 +66,7 @@ namespace TicTacToe
 			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
 			{
 				// Check if it's the current tile
-				if (Bounds.Contains(Mouse.GetState().Position))
+				if (Value == TileValue.EMPTY && Bounds.Contains(Mouse.GetState().Position))
 				{
 					// Update the state
 					Value = GameState.Turn;
