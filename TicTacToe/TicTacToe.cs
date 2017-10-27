@@ -50,14 +50,17 @@ namespace TicTacToe
 
 		protected override void Update(GameTime gameTime)
 		{
-			if(board.IsGameOver())
+			if(GameState.ShouldQuit)
 			{
 				Exit();
 			}
 
 			if(previousState.LeftButton == ButtonState.Pressed && Mouse.GetState().LeftButton == ButtonState.Released)
 			{
-				GameState.ToggleTurn();
+				if(!GameState.IsGameOver)
+				{
+					GameState.ToggleTurn();
+				}
 			}
 			previousState = Mouse.GetState();
 

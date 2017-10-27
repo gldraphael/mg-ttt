@@ -8,7 +8,6 @@ namespace TicTacToe
 	public class Board : DrawableGameComponent
 	{
 		private List<List<Tile>> tiles;
-		public TileValue Winner { get; set; } = TileValue.EMPTY;
 
 		public Board(Game game) : base(game)
 		{
@@ -26,25 +25,32 @@ namespace TicTacToe
 		{
 			base.Update(gameTime);
 
-
-			// Check the diagonals
-			var gameOver = isSame(tiles[0][0], tiles[1][1], tiles[2][2])
-				|| isSame(tiles[0][2], tiles[1][1], tiles[2][0]);
-
-			// Check the columns
-			for (int i = 0; i < 3; i++)
+			if(GameState.IsGameOver && !GameState.IsFullScreenPromptBeingShown)
 			{
-				gameOver = gameOver || isSame(tiles[i].ToArray()); // Columns
+				Game.Components.Add(GameOverPrompt.GetInstance(Game));
+				GameState.IsFullScreenPromptBeingShown = true;
 			}
-			// Check the rows
-			for (int i = 0; i < 3; i++)
-			{
-				gameOver = gameOver || isSame(tiles.Select(x => x[i]).ToArray()); // Rows
-			}
+			else // Check if any of the gameover conditions are satisfied
+			{ 
+				// Check the diagonals
+				var gameOver = isSame(tiles[0][0], tiles[1][1], tiles[2][2])
+					|| isSame(tiles[0][2], tiles[1][1], tiles[2][0]);
 
-			if(gameOver)
-			{
-				Winner = GameState.Turn;
+				// Check the columns
+				for (int i = 0; i < 3; i++)
+				{
+					gameOver = gameOver || isSame(tiles[i].ToArray()); // Columns
+				}
+				// Check the rows
+				for (int i = 0; i < 3; i++)
+				{
+					gameOver = gameOver || isSame(tiles.Select(x => x[i]).ToArray()); // Rows
+				}
+
+				if (gameOver)
+				{
+					GameState.Winner = GameState.Turn;
+				}
 			}
 		}
 
@@ -52,11 +58,6 @@ namespace TicTacToe
 		{
 			tiles.ForEach(l => l.ForEach(t => Game.Components.Remove(t)));
 			base.UnloadContent();
-		}
-
-		public bool IsGameOver()
-		{
-			return Winner != TileValue.EMPTY;
 		}
 
 		private void initTiles()

@@ -15,6 +15,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GlobalAssets.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Board.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FullScreenPrompt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameOverPrompt.cs" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" Condition=" '$(OS)' != 'Unix' " />
