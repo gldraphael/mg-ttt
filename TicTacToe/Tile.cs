@@ -61,6 +61,12 @@ namespace TicTacToe
 			base.LoadContent();
 		}
 
+		public void Reset()
+		{
+			toDraw = emptyBackground;
+			Value = TileValue.EMPTY;
+		}
+
 		public override void Update(GameTime gameTime)
 		{
 			// Mouse button clicked

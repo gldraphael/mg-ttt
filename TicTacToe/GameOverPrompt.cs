@@ -24,7 +24,7 @@ namespace TicTacToe
 				if (Keyboard.GetState().GetPressedKeys().Contains(Keys.Enter))
 				{
 					Game.Components.Remove(this);
-					GameState.IsFullScreenPromptBeingShown = false;
+					GameState.Reset();
 				}
 				else
 				{

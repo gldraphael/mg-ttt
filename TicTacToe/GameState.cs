@@ -1,5 +1,4 @@
-﻿using System;
-using TicTacToe;
+﻿using System.Diagnostics;
 
 namespace TicTacToe
 {
@@ -18,6 +17,15 @@ namespace TicTacToe
 				Turn = TileValue.ZERO;
 			else
 				Turn = TileValue.X;
+		}
+
+		public static void Reset()
+		{
+			Turn = TileValue.X;
+			Winner = TileValue.EMPTY;
+			ShouldQuit = false;
+			IsFullScreenPromptBeingShown = false;
+			Debug.Assert(IsGameOver == false);
 		}
 	}
 }

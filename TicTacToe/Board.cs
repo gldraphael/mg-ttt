@@ -23,12 +23,12 @@ namespace TicTacToe
 
 		public override void Update(GameTime gameTime)
 		{
-			base.Update(gameTime);
 
 			if(GameState.IsGameOver && !GameState.IsFullScreenPromptBeingShown)
 			{
 				Game.Components.Add(GameOverPrompt.GetInstance(Game));
 				GameState.IsFullScreenPromptBeingShown = true;
+				resetTiles();
 			}
 			else // Check if any of the gameover conditions are satisfied
 			{ 
@@ -52,6 +52,7 @@ namespace TicTacToe
 					GameState.Winner = GameState.Turn;
 				}
 			}
+			base.Update(gameTime);
 		}
 
 		protected override void UnloadContent()
@@ -74,6 +75,11 @@ namespace TicTacToe
 					});
 				}
 			}
+		}
+
+		private void resetTiles()
+		{
+			tiles.ForEach(l => l.ForEach(t => t.Reset()));
 		}
 
 		private static bool isSame(params TileValue[] values)
