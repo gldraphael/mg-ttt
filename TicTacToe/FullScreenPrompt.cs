@@ -20,6 +20,8 @@ namespace TicTacToe
 		}
 
 		public bool IsVisible { get; set; } = false;
+		public int Width => GraphicsDevice.Viewport.Width;
+		public int Height => GraphicsDevice.Viewport.Width;
 
 		public FullScreenPrompt(Game game) : base(game)
 		{
@@ -29,7 +31,11 @@ namespace TicTacToe
 		{
 			spriteBatch.Begin();
 			GraphicsDevice.Clear(Color.FloralWhite);
-			spriteBatch.DrawString(GlobalAssets.Font, Text, Vector2.Zero, Color.Black);
+
+			// Decide on the text and position
+			var textPosition = (new Vector2(Width, Height) - GlobalAssets.Font.MeasureString(Text)) / 2;
+			spriteBatch.DrawString(GlobalAssets.Font, Text, textPosition, Color.Black);
+
 			spriteBatch.End();
 			base.Draw(gameTime);
 		}
