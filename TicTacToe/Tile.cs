@@ -10,9 +10,9 @@ namespace TicTacToe
 		public const int Width = 200;
 		public const int BorderWidth = 2;
 		public readonly Color EmptyBackground = Color.CornflowerBlue;
-		public readonly Color SelectedBackground = Color.GreenYellow;
+		public readonly Color SelectedBackground = Color.DarkOrange;
 		public readonly Color BorderColor = Color.Black;
-		public readonly Color TextColor = Color.Black;
+		public readonly Color TextColor = Color.White;
 
 		public Vector2 Position { get; set; }
 		public Rectangle Bounds { get { return new Rectangle((int)Position.X, (int)Position.Y, Width, Width); } }
