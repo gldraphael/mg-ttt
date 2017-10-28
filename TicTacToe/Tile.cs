@@ -12,6 +12,7 @@ namespace TicTacToe
 		public readonly Color EmptyBackground = Color.CornflowerBlue;
 		public readonly Color SelectedBackground = Color.GreenYellow;
 		public readonly Color BorderColor = Color.Black;
+		public readonly Color TextColor = Color.Black;
 
 		public Vector2 Position { get; set; }
 		public Rectangle Bounds { get { return new Rectangle((int)Position.X, (int)Position.Y, Width, Width); } }
@@ -96,7 +97,7 @@ namespace TicTacToe
 			var textPosition = Position + (new Vector2(Width) - GlobalAssets.Font.MeasureString(text)) / 2;
 
 			// Draw the string
-			spriteBatch.DrawString(GlobalAssets.Font, text, textPosition, Color.Black);
+			spriteBatch.DrawString(GlobalAssets.Font, text, textPosition, TextColor);
 			spriteBatch.End();
 			base.Draw(gameTime);
 		}
