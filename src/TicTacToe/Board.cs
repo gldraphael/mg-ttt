@@ -57,7 +57,7 @@ namespace TicTacToe
 				// Check the diagonals
 				var gameOver = isSame(tiles[0][0], tiles[1][1], tiles[2][2])
 					|| isSame(tiles[0][2], tiles[1][1], tiles[2][0]);
-				
+
 				// Check the columns
 				for (int i = 0; i < 3; i++)
 				{
@@ -118,8 +118,13 @@ namespace TicTacToe
 
 			if (values.Length == 0)
 				return true;
+
+			var first = values[0];
+
+			// We don't care if all the three are empty
+			if (first == TileValue.EMPTY)
+				return false;
 			
-			var first = values[0] == TileValue.EMPTY ? TileValue.X : values[0]; // Condition because we don't want it to quit for all EMPTY values
 			for (int i = 1; i < values.Length; i++)
 			{
 				if (values[i] != first)
