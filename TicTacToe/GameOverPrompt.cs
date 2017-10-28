@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TicTacToe
 {
-	public class GameOverPrompt : FullScreenPrompt
+	public sealed class GameOverPrompt : FullScreenPrompt
 	{
 		private static GameOverPrompt instance { get; set; }
 		private GameOverPrompt(Game game) : base(game)
@@ -19,19 +19,6 @@ namespace TicTacToe
 
 		public override void Update(GameTime gameTime)
 		{
-			if (Keyboard.GetState().GetPressedKeys().Length > 0)
-			{
-				if (Keyboard.GetState().GetPressedKeys().Contains(Keys.Enter))
-				{
-					Game.Components.Remove(this);
-					GameState.Reset();
-				}
-				else
-				{
-					GameState.ShouldQuit = true;
-				}
-			}
-
 			Text = GameState.Winner == TileValue.EMPTY ? "Draw"
 					: GameState.Winner == TileValue.X ? "X wins"
 					: "0 wins";

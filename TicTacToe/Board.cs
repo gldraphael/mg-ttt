@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace TicTacToe
 {
@@ -23,19 +24,40 @@ namespace TicTacToe
 
 		public override void Update(GameTime gameTime)
 		{
+			var gameOverPrompt = GameOverPrompt.GetInstance(Game);
 
-			if(GameState.IsGameOver && !GameState.IsFullScreenPromptBeingShown)
+			// Handle keyboard inputs
+			if (gameOverPrompt.IsVisible)
 			{
-				Game.Components.Add(GameOverPrompt.GetInstance(Game));
-				GameState.IsFullScreenPromptBeingShown = true;
-				resetTiles();
+				if (Keyboard.GetState().GetPressedKeys().Length > 0)
+				{
+					// The user wants to continue?
+					if (Keyboard.GetState().GetPressedKeys().Contains(Keys.Enter))
+					{
+						// Hide the prompt
+						gameOverPrompt.Hide();
+						// Reset the game state
+						GameState.Reset();
+						// Reset this board
+						this.Reset();
+					}
+					else
+					{
+						GameState.ShouldQuit = true;
+					}
+				}
+			}
+
+			if(GameState.IsGameOver && !gameOverPrompt.IsVisible)
+			{
+				gameOverPrompt.Show();
 			}
 			else // Check if any of the gameover conditions are satisfied
 			{ 
 				// Check the diagonals
 				var gameOver = isSame(tiles[0][0], tiles[1][1], tiles[2][2])
 					|| isSame(tiles[0][2], tiles[1][1], tiles[2][0]);
-
+				
 				// Check the columns
 				for (int i = 0; i < 3; i++)
 				{
@@ -77,7 +99,7 @@ namespace TicTacToe
 			}
 		}
 
-		private void resetTiles()
+		public void Reset()
 		{
 			tiles.ForEach(l => l.ForEach(t => t.Reset()));
 		}
@@ -102,6 +124,20 @@ namespace TicTacToe
 		private static bool isSame(params Tile[] values)
 		{
 			return isSame(values.Select(x => x.Value).ToArray());
+		}
+
+		public override string ToString()
+		{
+			string str = "";
+			foreach (var l in tiles)
+			{
+				foreach (var t in l)
+				{
+					str += t.Value.ToString()[0] + " ";
+				}
+				str += "\n";
+			}
+			return string.Format(str);
 		}
 	}
 }

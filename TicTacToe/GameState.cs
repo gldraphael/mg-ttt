@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
 
 namespace TicTacToe
 {
@@ -25,7 +26,6 @@ namespace TicTacToe
 			Winner = TileValue.EMPTY;
 			ShouldQuit = false;
 			IsFullScreenPromptBeingShown = false;
-			Debug.Assert(IsGameOver == false);
 		}
 	}
 }

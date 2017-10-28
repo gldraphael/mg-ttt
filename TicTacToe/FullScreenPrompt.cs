@@ -11,7 +11,6 @@ namespace TicTacToe
 		protected string Text { get; set; } = "";
 
 		private SpriteBatch _sb;
-
 		private SpriteBatch spriteBatch
 		{
 			get
@@ -19,6 +18,8 @@ namespace TicTacToe
 				return _sb = _sb ?? Game.Services.GetService(typeof(SpriteBatch)) as SpriteBatch;
 			}
 		}
+
+		public bool IsVisible { get; set; } = false;
 
 		public FullScreenPrompt(Game game) : base(game)
 		{
@@ -31,6 +32,18 @@ namespace TicTacToe
 			spriteBatch.DrawString(GlobalAssets.Font, Text, Vector2.Zero, Color.Black);
 			spriteBatch.End();
 			base.Draw(gameTime);
+		}
+
+		public void Show()
+		{
+			Game.Components.Add(this);
+			IsVisible = true;
+		}
+
+		public void Hide()
+		{
+			Game.Components.Remove(this);
+			IsVisible = false;
 		}
 	}
 }
