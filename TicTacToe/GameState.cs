@@ -6,7 +6,7 @@ namespace TicTacToe
 	public static class GameState
 	{
 		public static TileValue Turn { get; set; } = TileValue.X;
-		public static TileValue Winner { get; set; } = TileValue.EMPTY;
+		public static TileValue? Winner { get; set; } = null;
 
 		/// <summary>
 		/// Set this to true to quit the application in the next loop
@@ -15,7 +15,7 @@ namespace TicTacToe
 		public static bool ShouldQuit { get; set; } = false;
 
 		/// <value><c>true</c> if is game over; otherwise, <c>false</c>.</value>
-		public static bool IsGameOver { get { return Winner != TileValue.EMPTY; }}
+		public static bool IsGameOver { get { return Winner != null; }}
 
 		public static void ToggleTurn()
 		{
@@ -28,7 +28,7 @@ namespace TicTacToe
 		public static void Reset()
 		{
 			Turn = TileValue.X;
-			Winner = TileValue.EMPTY;
+			Winner = null;
 			ShouldQuit = false;
 		}
 	}

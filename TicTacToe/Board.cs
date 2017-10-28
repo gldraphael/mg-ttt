@@ -69,10 +69,17 @@ namespace TicTacToe
 					gameOver = gameOver || isSame(tiles.Select(x => x[i]).ToArray()); // Rows
 				}
 
+				// Set the winner
 				if (gameOver)
 				{
 					GameState.Winner = GameState.Turn;
 				}
+				// Check if the board is full, it's a draw
+				else if(tiles.All(l => l.Where(t => t.Value == TileValue.EMPTY).Count() == 0))
+				{
+					GameState.Winner = TileValue.EMPTY;
+				}
+
 			}
 			base.Update(gameTime);
 		}
