@@ -1,6 +1,8 @@
 # TicTacToe
 
-Another TicTacToe game I started writing because I wasn't getting sleep.
+Another TicTacToe game I started writing because I wasn't getting sleep. This time using MonoGame. Was able to learn it quick because I've used XNA back in 2012.
+
+![Screenshot Image](screenshots/image.png)
 
 ## Building the project on a Mac
 
