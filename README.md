@@ -3,7 +3,7 @@
 Another TicTacToe game I started writing because I wasn't getting sleep. This time using MonoGame. Was able to learn it quick because I've used XNA back in 2012.
 
 <video autoplay>
-  <source src="/gldraphael/mg-ttt/raw/master/screenshots/gameplay-28-oct-2017.mp4" type="video/mp4">
+  <source src="https://github.com/gldraphael/mg-ttt/blob/master/screenshots/gameplay-28-oct-2017.mp4?raw=true" type="video/mp4">
   <img src="screenshots/image.png" alt="Screenshot Image" style="max-width:100%;">
 </video>
 
