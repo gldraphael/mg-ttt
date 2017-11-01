@@ -13,9 +13,9 @@ Another TicTacToe game I started writing because I wasn't getting sleep. This ti
 
 **Requirements:**
 
-- VS for Mac | [Download Page](https://www.visualstudio.com/vs/visual-studio-mac/)
-- Mono | [Download Page](http://www.mono-project.com/download) | `brew install mono`
-- MonoGame | [Download Page](http://www.monogame.net/downloads/)
+- VS for Mac &middot; [Download Page](https://www.visualstudio.com/vs/visual-studio-mac/)
+- Mono &middot; [Download Page](http://www.mono-project.com/download) &middot; `brew install mono`
+- MonoGame &middot; [Download Page](http://www.monogame.net/downloads/)
 
 **Steps:**
 
