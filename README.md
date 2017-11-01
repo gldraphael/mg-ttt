@@ -1,6 +1,6 @@
 # TicTacToe
 
-Another TicTacToe game I started writing because I wasn't getting sleep. This time using MonoGame. Was able to learn it quick because I've used XNA back in 2012.
+Yet another TicTacToe game. This time using MonoGame. Was able to learn it quick because I've used XNA back in 2012. Started writing this because of a sleepless night.
 
 <p style="text-align: center">
   <video autoplay loop style="width:100%;max-width:500px">
